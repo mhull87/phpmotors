@@ -61,9 +61,15 @@ footer p:first-child {
   color: #4c96d7;
 }
 
-section p, h3 {
+section p {
   margin: 0;
   padding: 0;
+}
+
+.deloreanp h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 1.2rem;
 }
 
 .buttondiv {
@@ -129,6 +135,9 @@ figcaption {
   body {
     border: 5px solid #a6cbeb;
   }
+
+  .navlist li a {
+    font-size: 1.5rem;  }
 
   .topcontainer {
     display: grid;

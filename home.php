@@ -5,7 +5,7 @@
 
   <div class="topcontainer">
     <section class="deloreanp">
-      <h3>DMC Delorean</h3>
+      <h2>DMC Delorean</h2>
       <p>3 Cup holders</p>
       <p>Superman doors</p>
       <p>Fuzzy dice!</p>
@@ -25,7 +25,7 @@
         <li>"So fast its almost like traveling time." (4/5)</li>
         <li>"Coolest ride on the road." (4/5)</li>
         <li>"I'm feeling Marty McFly!" (5/5)</li>
-        <li>"The most futuristic ride of our day."</li>
+        <li>"The most futuristic ride of our day." (5/5)</li>
         <li>"80's livin and I love it!" (5/5)</li>
       </ul>
     </section>
