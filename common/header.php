@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PHP Motors</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Goldman&display=swap" rel="stylesheet">
   <link href="/phpmotors/css/main.css" type="text/css" rel="stylesheet" media="screen">
 </head>
 
@@ -15,5 +17,5 @@
   </header>
 
   <nav>
-  <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/nav.php'; ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/nav.php'; ?>
   </nav>
