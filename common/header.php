@@ -7,12 +7,12 @@
   <title>PHP Motors</title>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Goldman&display=swap" rel="stylesheet">
-  <link href="/phpmotors/css/main.css" type="text/css" rel="stylesheet" media="screen">
+  <link href="../css/main.css" type="text/css" rel="stylesheet" media="screen">
 </head>
 
 <body>
   <header>
-    <img src="images/site/logo.png" alt="PHP Motors logo">
+    <img src="../images/site/logo.png" alt="PHP Motors logo">
     <a class='login' href="#" title="Login in to PHP Motors">My Account</a>
   </header>
 
