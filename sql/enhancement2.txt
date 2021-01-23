@@ -25,6 +25,8 @@ WHERE `invMake`='Jeep'
 AND `invModel`='Wrangler';
 
 -- Query 6
-UPDATE `inventory`
-SET `invImage`=concat('/phpmotors',invImage) 
-AND `invThumbnail`=concat('/phpmotors',invThumbnail);
+UPDATE inventory
+SET invImage = CONCAT('/phpmotors' , inventory.invImage);
+
+UPDATE inventory
+SET invThumbnail = CONCAT('/phpmotors' , inventory.invThumbnail);
