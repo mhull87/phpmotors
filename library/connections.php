@@ -5,23 +5,24 @@
 
 function phpmotorsConnect()
 {
-$server = 'mysql';
-$dbname = 'phpmotors';
-$username = 'iClient';
-$password ='Yw6hd7Higiovk5pX';
-$dsn = "mysql:host=$server;dbname=$dbname";
-$options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
+    $server = 'mysql';
+    $dbname = 'phpmotors';
+    $username = 'iClient';
+    $password ='Yw6hd7Higiovk5pX';
 
-try {
-  $link = new PDO($dsn, $username, $password, $options);
-  // if(is_object($link)) {
-  //   echo 'It worked!';
-  // }
-  return $link;
-} catch(PDOException $e) {
-//  echo "It didn't work, error: ".$e->getMessage();
-header('Location: /phpmotors/view/500.php');
-exit;
+    $dsn = "mysql:host=$server;dbname=$dbname";
+    $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
+
+    //Create connection object and assign it to a variable
+    try {
+        $link = new PDO($dsn, $username, $password, $options);
+        // if(is_object($link)) {
+        //   echo 'It worked!';
+        // }
+        return $link;
+    } catch (PDOException $e) {
+        //  echo "It didn't work, error: ".$e->getMessage();
+        header('Location: /phpmotors/view/500.php');
+        exit;
+    }
 }
-}
-phpmotorsConnect();

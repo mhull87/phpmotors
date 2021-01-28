@@ -11,7 +11,7 @@
       <p>Fuzzy dice!</p>
     </section>
 
-    <img class='delorean' src="../images/delorean.jpg" alt="Delorean">
+    <img class='delorean' src="/phpmotors/images/delorean.jpg" alt="Delorean">
 
     <div class="buttondiv">
       <button>Own Today</button>
@@ -34,19 +34,19 @@
       <h2>Delorean Upgrades</h2>
       <div class="deloreanupgrades">
         <figure>
-          <img class="deloreanupgradesfig" src="../images/upgrades/flux-cap.png" alt="Flux Capacitor">
+          <img class="deloreanupgradesfig" src="/phpmotors/images/upgrades/flux-cap.png" alt="Flux Capacitor">
           <figcaption>Flux Capacitor</figcaption>
         </figure>
         <figure>
-          <img class="deloreanupgradesfig" src="../images/upgrades/flame.jpg" alt="Flame Decals">
+          <img class="deloreanupgradesfig" src="/phpmotors/images/upgrades/flame.jpg" alt="Flame Decals">
           <figcaption>Flame Decals</figcaption>
         </figure>
         <figure>
-          <img class="deloreanupgradesfig" src="../images/upgrades/bumper_sticker.jpg" alt="Bumper Stickers">
+          <img class="deloreanupgradesfig" src="/phpmotors/images/upgrades/bumper_sticker.jpg" alt="Bumper Stickers">
           <figcaption>Bumper Stickers</figcaption>
         </figure>
         <figure>
-          <img class="deloreanupgradesfig" src="../images/upgrades/hub-cap.jpg" alt="Hub Caps">
+          <img class="deloreanupgradesfig" src="/phpmotors/images/upgrades/hub-cap.jpg" alt="Hub Caps">
           <figcaption>Hub Caps</figcaption>
         </figure>
       </div>

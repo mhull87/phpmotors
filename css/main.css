@@ -21,7 +21,6 @@ header {
   flex-wrap: wrap;
   justify-content: flex-start;
   background-color: #3a3a3a;
-  color: white;
   padding: 0;
 }
 
@@ -32,10 +31,15 @@ header {
 
 .navlist li a {
   font-size: .7em;
+  text-decoration: none;
+  color: white;
 }
 
 .navlist li:hover {
   background-color: #4c96d7;
+}
+
+.navlist li:hover a {
   color: #3a3a3a;
 }
 
@@ -137,7 +141,8 @@ figcaption {
   }
 
   .navlist li a {
-    font-size: 1.5rem;  }
+    font-size: 1.5rem;
+  }
 
   .topcontainer {
     display: grid;
@@ -165,5 +170,4 @@ figcaption {
   .upgradecontainer {
     grid-area: 1 / 1 / 2 / 2;
   }
-
 }

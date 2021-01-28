@@ -3,7 +3,6 @@
   <p>All images used are belieced to be in "Fair Use". Please notify the author if any are not and they will be
     removed.</p>
   <p>Last Updated: 30 March, 2018</p>
-
 </footer>
 </body>
 
