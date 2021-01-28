@@ -13,7 +13,7 @@
 <body>
   <header>
     <img src="/phpmotors/images/site/logo.png" alt="PHP Motors logo">
-    <a class='login' href="/phpmotors/accoutns/index.php?action=login" title='Login in to PHP Motors'>My Account</a>
+    <a class='login' href="/phpmotors/accounts/index.php?action=login" title='Login in to PHP Motors'>My Account</a>
   </header>
 
   <nav>

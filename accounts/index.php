@@ -23,10 +23,12 @@ if ($action == null) {
 }
 
 switch ($action) {
-  case 'registration':
-    include 'view/registration.php';
-    break;
-  default:
+  case 'login':
     include '../view/login.php';
     break;
+  case 'register':
+    include '../view/registration.php';
+    break;
+  default:
+    include '../view/500.php';
 }
