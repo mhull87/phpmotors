@@ -3,6 +3,13 @@
 <main>
   <h1>Log Into PHP Motors</h1>
 
+  <?php
+if (isset($message))
+{
+  echo $message;
+}
+?>
+
   <form action="#" method="POST">
     <label for="email">Email: </label><br>
     <input name="email" id="email" type="email"><br>

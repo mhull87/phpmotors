@@ -2,17 +2,28 @@
 
 <main>
   <h1>Register For An Account</h1>
-  <form action="#" method="POST">
+
+<?php
+if (isset($message))
+{
+  echo $message;
+}
+?>
+
+  <form action="/phpmotors/accounts/index.php" method="POST">
     <p>*All fields required*</p>
-    <label for="firstname">First Name: </label><br>
-    <input name="firstname" id="firstname" type="text"><br>
-    <label for="lastname">Last Name: </label><br>
-    <input name="lastname" id="lastname" type="text"><br>
+    <label for="fname">First Name: </label><br>
+    <input name="clientFirstname" id="fname" type="text"><br>
+    <label for="lname">Last Name: </label><br>
+    <input name="clientLastname" id="lname" type="text"><br>
     <label for="email">Email: </label><br>
-    <input name="email" id="email" type="email"><br>
+    <input name="clientEmail" id="email" type="email"><br>
     <label for="password">Password: </label><br>
-    <input name="password" id="password" type="password"><br><br>
-    <input type="submit" value="Register">
+    <input name="clientPassword" id="password" type="password"><br><br>
+    <input type="submit" name="submit" id="regbtn" value="Register">
+
+    <!-- Add the action name - value pair -->
+    <input type="hidden" name="action" value="register">
   </form>
 </main>
 
