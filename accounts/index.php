@@ -29,7 +29,7 @@ switch ($action) {
     include '../view/login.php';
     break;
   case 'register':
-    
+
     // Filter and store the data
     $clientFirstname = filter_input(INPUT_POST, 'clientFirstname');
     $clientLastname = filter_input(INPUT_POST, 'clientLastname');
@@ -39,22 +39,22 @@ switch ($action) {
     // check for missing data
     if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($clientPassword))
     {
-      $message = '<p>Please provide information for all empty form fields.</p>';
-      include '../view/registration.php';
+      $message = "<p>Please provide information for all empty form fields.</p>';
+      include '../view/registration.php";
       exit;
     }
     $regOutcome = regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword);
 
     // check and report the result
     if ($regOutcome == 1) {
-        $message = "<p>Thanks for registering $clientFirstname. Please use your email and password to login.</p>";
+        $message = "<h2>Thanks for registering $clientFirstname. Please use your email and password to login.</p>";
         include '../view/login.php';
         exit;
     }
     else
     {
-      $message = '<p>Sorry $clientFirstname, but the registration failed. Please try again.</p>';
-      include '../view/registration.php';
+      $message = "<p>Sorry $clientFirstname, but the registration failed. Please try again.</p>';
+      include '../view/registration.php";
       exit;
     }
     break;
