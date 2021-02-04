@@ -1,10 +1,16 @@
-<?php echo $navList; ?>
-<!-- <ul class="navlist">
-  <li><a title="Home Page">Home</a></li>
-  <li><a title='Classic Page'>Classic</a></li>
-  <li><a title='Sports Page'>Sports</a></li>
-  <li><a title='SUV Page'>SUV</a></li>
-  <li><a title='Trucks Page'>Trucks</a></li>
-  <li><a title='Used Page'>Used</a></li>
-</ul> -->
+<?php
+//Get the array of classifications
+$classifications = getClassifications();
 
+//Build a navigation bar using the $classifications array
+$navList = '<ul class="navlist">';
+$navList .= "<li><a href='/phpmotors/index.php?action=home' title='View the PHP Motors home page'>Home</a></li>";
+foreach ($classifications as $classification) {
+    $navList .= "<li><a href='/phpmotors/index.php?action=".urlencode($classification['classificationName'])."' title='View our $classification[classificationName] product line'>$classification[classificationName]</a></li>";
+}
+
+$navList .= '</ul>';
+
+echo $navList; 
+
+?>

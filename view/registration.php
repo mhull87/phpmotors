@@ -11,7 +11,7 @@ if (isset($message))
 ?>
 
   <form action="/phpmotors/accounts/index.php" method="POST">
-    <p>*All fields required*</p>
+    <p>*All fields required</p>
     <label for="fname">First Name: </label><br>
     <input name="clientFirstname" id="fname" type="text"><br>
     <label for="lname">Last Name: </label><br>
