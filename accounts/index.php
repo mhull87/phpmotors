@@ -9,11 +9,13 @@ require_once '../model/main-model.php';
 require_once '../model/accounts-model.php';
 
 $action = filter_input(INPUT_POST, 'action');
-if ($action == null) {
-    $action = filter_input(INPUT_GET, 'action');
+if ($action == null)
+{
+  $action = filter_input(INPUT_GET, 'action');
 }
 
-switch ($action) {
+switch ($action) 
+{
   case 'login':
     include '../view/login.php';
     break;

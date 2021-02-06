@@ -10,7 +10,7 @@
   }
   ?>
 
-  <form method="/phpmotors/vehicles/index.php" action="POST">
+  <form action="/phpmotors/vehicles/index.php" method="POST">
     <label for="classificationName">Classification Name</label><br>
     <input name="classificationName" id="classificationName" type="text"><br><br>
     <input type="submit" name="submit" id="classbtn" value="Add Car Classification">

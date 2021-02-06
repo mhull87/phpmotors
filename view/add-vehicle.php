@@ -24,6 +24,8 @@
     <label for="invThumbnail">Thumbnail Path</label><br>
     <input name="invThumbnail" id="invThumbnail" type="text"><br><br>
     <label for="invPrice">Price</label><br>
+    <input name="invPrice" id="invPrice" type="text"><br><br>
+    <label for="invStock"># In Stock</label><br>
     <input name="invStock" id="invStock" type="text"><br><br>
     <label for="invColor">Color</label><br>
     <input name="invColor" id="invColor" type="text"><br><br>
