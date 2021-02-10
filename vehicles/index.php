@@ -73,7 +73,7 @@ switch ($action)
     if (empty($classificationId) || empty($invMake) || empty($invModel) || empty($invDescription) || empty($invImage) || empty($invThumbnail) || empty($invPrice) || empty($invStock) || empty($invColor))
     {
       $message = "<p>Please provide information for all empty form fields.</p>";
-      var_dump($classificationId, $invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor);
+
       include '../view/add-vehicle.php';
       exit;
     } 
