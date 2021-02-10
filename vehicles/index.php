@@ -16,7 +16,7 @@ $classifications = getClassifications();
 //Create a dynamic drop-down select list
 foreach ($classifications as $classification) 
 {
-$classificationList .= "<option name='classificationId' value='".urlencode($classification['classificationId'])."'>".urlencode($classification['classificationName'])."</option>";
+$classificationList .= "<option value='".urlencode($classification['classificationId'])."'>".urlencode($classification['classificationName'])."</option>";
 }
 
 $classificationList .= "</select>";
@@ -58,12 +58,11 @@ switch ($action)
     break;
 
   case 'addvehicle':
-echo 'in addvehicle control';
     //Filter and store data
-    $classificationId = filter_input(INPUT_POST, 'classificationId');
+    $classificationId = filter_input(INPUT_POST, 'classificationList');
     $invMake = filter_input(INPUT_POST, 'invMake');
     $invModel = filter_input(INPUT_POST, 'invModel');
-    $invDescription = filter_input(INPUT_POST, 'invDescriptionn');
+    $invDescription = filter_input(INPUT_POST, 'invDescription');
     $invImage = filter_input(INPUT_POST, 'invImage');
     $invThumbnail = filter_input(INPUT_POST, 'invThumbnail');
     $invPrice = filter_input(INPUT_POST, 'invPrice');
@@ -74,28 +73,28 @@ echo 'in addvehicle control';
     if (empty($classificationId) || empty($invMake) || empty($invModel) || empty($invDescription) || empty($invImage) || empty($invThumbnail) || empty($invPrice) || empty($invStock) || empty($invColor))
     {
       $message = "<p>Please provide information for all empty form fields.</p>";
+      var_dump($classificationId, $invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor);
       include '../view/add-vehicle.php';
       exit;
     } 
-  
-    
-echo 'in the addvehicle else control';
-    $addOutcome = addVehicle($classificationId, $invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor);
-
-    //check and report the result
-    if ($addOutcome === 1)
-    {
-      $message = "<h2>$invMake $invModel Added to Inventory List</h2>";
-      include '../view/add-vehicle.php';
-      exit;
-    }
     else
     {
-      $message = "<p>Sorry, the addition failed. Please try again.</p>";
-      include '../view/add-vehicle.php';
-      exit;
+    $addOutcome = addVehicle($classificationId, $invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor);
+
+        //check and report the result
+        if ($addOutcome == 1)
+        {
+          $message = "<h2>$invMake $invModel Added to Inventory List</h2>";
+          include '../view/vehicle-management.php';
+          exit;
+        }
+        else
+        {
+          $message = "<p>Sorry, the addition failed. Please try again.</p>";
+          include '../view/add-vehicle.php';
+          exit;
+        }
     }
-  
 
     break;
 

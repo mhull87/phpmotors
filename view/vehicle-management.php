@@ -3,6 +3,13 @@
 <main>
   <h1>Vehicle Management</h1>
 
+  <?php
+  if (isset($message))
+  {
+    echo $message;
+  }
+  ?>
+
   <a href="/phpmotors/vehicles/index.php?action=addclassification">Add a Classification</a>
   <br><br>
   <a href="/phpmotors/vehicles/index.php?action=addvehicle">Add a Vehicle</a>

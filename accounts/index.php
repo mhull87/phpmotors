@@ -39,7 +39,7 @@ switch ($action)
 
     // check and report the result
     if ($regOutcome == 1) {
-        $message = "<h2>Thanks for registering $clientFirstname. Please use your email and password to login.</p>";
+        $message = "<p>Thanks for registering $clientFirstname. Please use your email and password to login.</p>";
         include '../view/login.php';
         exit;
     }
