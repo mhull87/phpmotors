@@ -17,7 +17,7 @@ if (isset($message))
     <input name="password" id="password" type="password"><br><br>
     <input type="submit" value="Login">
   </form><br>
-  <a href="/phpmotors/accounts/index.php?action=register">Not a member yet?</a>
+  <a href="/phpmotors/accounts/index.php?action=register" title="Register for a PHP Motors account.">Not a member yet?</a>
 </main>
 
 <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/footer.php'; ?>

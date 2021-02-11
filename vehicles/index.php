@@ -21,8 +21,6 @@ $classificationList .= "<option value='".urlencode($classification['classificati
 
 $classificationList .= "</select>";
 
-//echo $classificationList;
-
 $action = filter_input(INPUT_POST, 'action');
 if ($action == null) 
 {
@@ -51,7 +49,6 @@ switch ($action)
     {
       $addOutcome = newClassification($classificationName);
       header('Location:../vehicles/index.php');
-    //  include '../view/vehicle-management.php';
       exit;
     }
 
@@ -82,7 +79,7 @@ switch ($action)
     $addOutcome = addVehicle($classificationId, $invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor);
 
         //check and report the result
-        if ($addOutcome == 1)
+        if ($addOutcome === 1)
         {
           $message = "<h2>$invMake $invModel Added to Inventory List</h2>";
           include '../view/vehicle-management.php';

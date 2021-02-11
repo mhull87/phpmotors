@@ -12,7 +12,7 @@ function newClassification($classificationName)
   $db = phpmotorsConnect();
   //The SQL statement
   $sql = 'INSERT INTO carclassification (classificationName)
-    VALUES (:classificationName)';
+          VALUES (:classificationName)';
 //Create the prepared statement using the phpmotors connection
 $stmt = $db->prepare($sql);
 //Replace the placeholder in the SQL
