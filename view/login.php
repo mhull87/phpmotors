@@ -10,12 +10,21 @@ if (isset($message))
 }
 ?>
 
-  <form action="#" method="POST">
+  <form action="/phpmotors/accounts/index.php" method="POST">
     <label for="email">Email: </label><br>
-    <input name="email" id="email" type="email"><br>
-    <label for="password">Password: </label><br>
-    <input name="password" id="password" type="password"><br><br>
+    <input name="clientEmail" id="email" type="email" <?php if (isset($clientEmail)) {echo "value='$clientEmail'";} ?> required><br><br>
+    <label for="password">Password: </label>
+    <span class="passrequirements">
+      <ul>
+        <li>at least 8 characters</li>
+        <li>1 uppercase character</li>
+        <li>1 number</li>
+        <li>1 special character</li>
+      </ul>
+    </span>
+    <input name="clientPassword" id="password" type="password" pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required><br><br>
     <input type="submit" value="Login">
+    <input type="hidden" name="action" value="Login">
   </form><br>
   <a href="/phpmotors/accounts/index.php?action=register" title="Register for a PHP Motors account.">Not a member yet?</a>
 </main>

@@ -117,6 +117,12 @@ figcaption {
   text-decoration: underline;
 }
 
+.passrequirements {
+  font-size: .8rem;
+  font-weight: bold;
+  color: crimson;
+}
+
 @media only screen and (min-width: 375px) {
 
   .navlist li a {

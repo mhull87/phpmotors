@@ -8,7 +8,7 @@ function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassw
   $db = phpmotorsConnect();
   // The SQL statement
   $sql = 'INSERT INTO clients (clientFirstname, clientLastname,clientEmail, clientPassword)
-      VALUES (:clientFirstname, :clientLastname, :clientEmail, :clientPassword)';
+          VALUES (:clientFirstname, :clientLastname, :clientEmail, :clientPassword)';
   // Create the prepared statement using the phpmotors connection
   $stmt = $db->prepare($sql);
   // The next four lines replace the placeholders in the SQL
