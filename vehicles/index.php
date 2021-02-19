@@ -7,19 +7,8 @@ require_once '../library/connections.php';
 require_once '../model/main-model.php';
 //Get the vehicle model
 require_once '../model/vehicles-model.php';
-
-//Get the array of classifications
-$classifications = getClassifications();
-
-  $classificationList = "<label for='classificationList'>Choose a Vehicle:</label><br><select name='classificationList' id='classificationList'>";
-
-//Create a dynamic drop-down select list
-foreach ($classifications as $classification) 
-{
-$classificationList .= "<option value='".urlencode($classification['classificationId'])."'>".urlencode($classification['classificationName'])."</option>";
-}
-
-$classificationList .= "</select>";
+//validate the email and password
+require_once '../library/functions.php';
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action == null) 
@@ -34,9 +23,8 @@ switch ($action)
     break;
 
   case 'addclassification':
-
     //Filter and store the data
-    $classificationName = filter_input(INPUT_POST, 'classificationName');
+    $classificationName = filter_input(INPUT_POST, 'classificationName', FILTER_SANITIZE_STRING);
 
     //Check for missing data
     if (empty($classificationName))
@@ -56,18 +44,19 @@ switch ($action)
 
   case 'addvehicle':
     //Filter and store data
-    $classificationId = filter_input(INPUT_POST, 'classificationList');
-    $invMake = filter_input(INPUT_POST, 'invMake');
-    $invModel = filter_input(INPUT_POST, 'invModel');
-    $invDescription = filter_input(INPUT_POST, 'invDescription');
-    $invImage = filter_input(INPUT_POST, 'invImage');
-    $invThumbnail = filter_input(INPUT_POST, 'invThumbnail');
-    $invPrice = filter_input(INPUT_POST, 'invPrice');
-    $invStock = filter_input(INPUT_POST, 'invStock');
-    $invColor = filter_input(INPUT_POST, 'invColor');
+    $classificationId = filter_input(INPUT_POST, 'classificationList', FILTER_SANITIZE_NUMBER_INT);
+    $invMake = filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_STRING);
+    $invModel = filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_STRING);
+    $invDescription = filter_input(INPUT_POST, 'invDescription', FILTER_SANITIZE_STRING);
+    $invImage = filter_input(INPUT_POST, 'invImage', FILTER_SANITIZE_STRING);
+    $invThumbnail = filter_input(INPUT_POST, 'invThumbnail', FILTER_SANITIZE_STRING);
+    $invPrice = filter_input(INPUT_POST, 'invPrice', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+    $invStock = filter_input(INPUT_POST, 'invStock', FILTER_SANITIZE_NUMBER_INT);
+    $invColor = filter_input(INPUT_POST, 'invColor', FILTER_SANITIZE_STRING);
+    $checkPrice = checkPrice($invPrice);
 
     //check for missing data
-    if (empty($classificationId) || empty($invMake) || empty($invModel) || empty($invDescription) || empty($invImage) || empty($invThumbnail) || empty($invPrice) || empty($invStock) || empty($invColor))
+    if (empty($classificationId) || empty($invMake) || empty($invModel) || empty($invDescription) || empty($invImage) || empty($invThumbnail) || empty($checkPrice) || empty($invStock) || empty($invColor))
     {
       $message = "<p>Please provide information for all empty form fields.</p>";
 
