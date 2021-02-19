@@ -28,9 +28,9 @@ function checkPassword($clientPassword)
   }
 
 //create nav list
-function nav()
+function nav($classifications)
   {
-    $classifications = getClassifications();
+//    $classifications = getClassifications();
     //Build a navigation bar using the $classifications array
     $navList = '<ul class="navlist">';
     $navList .= "<li><a href='/phpmotors/index.php?action=home' title='View the PHP Motors home page'>Home</a></li>";

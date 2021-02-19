@@ -1,5 +1,4 @@
 <?php
-$classifications = getClassifications();
     $classificationOptions = '';
     //Create a dynamic drop-down select list
     foreach ($classifications as $classification) 

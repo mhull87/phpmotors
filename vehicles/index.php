@@ -10,6 +10,8 @@ require_once '../model/vehicles-model.php';
 //validate the email and password
 require_once '../library/functions.php';
 
+$classifications = getClassifications();
+
 $action = filter_input(INPUT_POST, 'action');
 if ($action == null) 
 {

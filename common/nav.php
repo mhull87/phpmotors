@@ -1,4 +1,4 @@
 <?php
-$navList = nav();
+$navList = nav($classifications);
 echo $navList; 
 ?>
