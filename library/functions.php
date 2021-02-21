@@ -1,6 +1,6 @@
 <?php    
 //Get the PHP Motors model for use as needed
-require_once '../model/main-model.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/model/main-model.php';
 
 //custom functions
 
@@ -30,7 +30,7 @@ function checkPassword($clientPassword)
 //create nav list
 function nav($classifications)
   {
-//    $classifications = getClassifications();
+    $classifications = getClassifications();
     //Build a navigation bar using the $classifications array
     $navList = '<ul class="navlist">';
     $navList .= "<li><a href='/phpmotors/index.php?action=home' title='View the PHP Motors home page'>Home</a></li>";

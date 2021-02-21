@@ -1,10 +1,9 @@
 <?php
 //Get the database connection file
-require_once '../library/connections.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/connections.php';
 
 //Main PHP Motors Model
 function getClassifications()
-
 {
     //Create a connection object form the phpmotors conncetion function
     $db = phpmotorsConnect();

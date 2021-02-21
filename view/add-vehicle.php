@@ -59,7 +59,7 @@
     <input name="invStock" id="invStock" type="text" <?php if (isset($invStock)) {echo "value='$invStock'";} ?> required><br><br>
 
     <label for="invColor">Color</label><br>
-    <input name="invColor" id="invColor" type="color" <?php if (isset($invColor)) {echo "value='$invColor'";} ?> required><br><br>
+    <input name="invColor" id="invColor" type="text" <?php if (isset($invColor)) {echo "value='$invColor'";} ?> required><br><br>
 
     <input type="submit" id="addvehiclebtn" value="Add Vehicle"><br>
 
