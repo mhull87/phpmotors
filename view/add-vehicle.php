@@ -1,4 +1,10 @@
 <?php
+if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 2)
+{
+  header('Location: ../index.php');
+  exit;
+}
+
     $classificationOptions = '';
     //Create a dynamic drop-down select list
     foreach ($classifications as $classification) 
@@ -15,7 +21,8 @@
     
     $classificationOptions .= ">$classification[classificationName]</option>";
     }
-?><?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/header.php'; ?>
+    
+include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/header.php'; ?>
 
 <main>
   <h1>Add a Vehicle</h1>

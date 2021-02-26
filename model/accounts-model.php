@@ -1,8 +1,8 @@
-<!-- This is the accounts model -->
-
-<!-- This new function will handle site registrations -->
-
 <?php
+//This is the accounts model
+
+//This new function will handle site registrations
+
 function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword){
   // Create a connection object using the phpmotors connection function
   $db = phpmotorsConnect();
@@ -26,5 +26,55 @@ function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassw
   $stmt->closeCursor();
   // Return the indication of success (rows changed)
   return $rowsChanged;
+ }
+
+ //checks for an existing email address
+ function uniqueEmail($clientEmail)
+ {
+   $db = phpmotorsConnect();
+
+   $sql = "SELECT clientEmail FROM clients
+          WHERE clientEmail = :clientEmail";
+
+    $stmt = $db->prepare($sql);
+
+    $stmt->bindValue(':clientEmail', $clientEmail, PDO::PARAM_STR);
+
+    $stmt->execute();
+
+    $foundEmail = $stmt->fetch(PDO::FETCH_NUM);
+
+    $stmt->closeCursor();
+
+    if (empty($foundEmail))
+    {
+      return 0;
+    }
+    else
+    {
+      return 1;
+    }
+ }
+
+ //get client data based on an email address
+ function getClient($clientEmail)
+ {
+   $db = phpmotorsConnect();
+
+   $sql = 'SELECT clientId, clientFirstname, clientLastname, clientEmail, clientLevel, clientPassword
+          FROM clients
+          WHERE clientEmail = :clientEmail';
+
+  $stmt = $db->prepare($sql);
+
+  $stmt->bindValue(':clientEmail', $clientEmail, PDO::PARAM_STR);
+
+  $stmt->execute();
+
+  $clientData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+  $stmt->closeCursor();
+
+  return $clientData;
  }
  ?>

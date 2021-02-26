@@ -10,9 +10,17 @@ header {
   align-items: center;
 }
 
-.login {
+.loginout {
   text-decoration: none;
   color: #3a3a3a;
+}
+
+.logdiv {
+  text-align: right;
+}
+
+.hidden {
+  display: none;
 }
 
 .navlist {

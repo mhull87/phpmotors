@@ -1,4 +1,12 @@
-<?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/header.php'; ?>
+<?php 
+if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 2)
+{
+  header('Location: ../index.php');
+  exit;
+}
+
+include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/header.php'; 
+?>
 
 <main>
   <h1>Vehicle Management</h1>

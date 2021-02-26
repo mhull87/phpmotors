@@ -11,7 +11,6 @@ if (isset($message))
 ?>
 
   <form action="/phpmotors/accounts/index.php" method="POST">
-    <p>*All fields required</p>
     <label for="fname">First Name: </label><br>
     <input name="clientFirstname" id="fname" type="text" <?php if (isset($clientFirstname)) {echo "value='$clientFirstname'";} ?> required><br><br>
     <label for="lname">Last Name: </label><br>
