@@ -18,14 +18,14 @@ if (isset($message))
     <label for="email">Email: </label><br>
     <input name="clientEmail" id="email" type="email" <?php if (isset($clientEmail)) {echo "value='$clientEmail'";} ?> required><br><br>
     <label for="password">Password: </label><br>
-    <span class="passrequirements">
+    <div class="passrequirements">
       <ul>
         <li>at least 8 characters</li>
         <li>1 uppercase character</li>
         <li>1 number</li>
         <li>1 special character</li>
       </ul>
-    </span>
+    </div>
     <input name="clientPassword" id="password" type="password" pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required><br><br>
     <input type="submit" name="submit" id="regbtn" value="Register">
 
