@@ -35,10 +35,9 @@ include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/header.php'; ?>
   ?>
 
   <form action="/phpmotors/vehicles/index.php" method="POST">
-    <p>*All fields required</p>
-
-    <label for='classificationList'>Choose a Vehicle:</label><br>
+    <label for='classificationList'>Classification</label><br>
     <select name='classificationList' id='classificationList' <?php if (isset($classificationName)) {echo "value='$classificationName'";} ?> >
+    <option>Choose a Classification</option>
 
       <?php echo $classificationOptions; ?>
     

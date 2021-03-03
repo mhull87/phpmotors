@@ -1,8 +1,12 @@
 <?php 
 if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 2)
 {
-  header('Location: ../index.php');
+  header('Location: ./phpmotors/');
   exit;
+}
+if (isset($_SESSION['message']))
+{
+  $message = $_SESSION['message'];
 }
 
 include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/header.php'; 
@@ -28,8 +32,11 @@ include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/header.php';
   <noscript>
     <p><strong>JavaScript Must Be Enabled to Use this Page.</strong></p>
   </noscript>
-  <table id="inventoryDisplay"></table>
+  <table id="inventoryDisplay" class='table'></table>
 </main>
 
-<script src="../js/inventory.js">
 <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/footer.php'; ?>
+
+<script src="../js/inventory.js"></script>
+
+<?php unset($_SESSION['message']); ?>

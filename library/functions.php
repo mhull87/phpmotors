@@ -3,7 +3,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/model/main-model.php';
 
 //custom functions
-
+$classifications = getClassifications();
 //validate client email
 function checkEmail($clientEmail)
   {
@@ -30,7 +30,6 @@ function checkPassword($clientPassword)
 //create nav list
 function nav($classifications)
   {
-    $classifications = getClassifications();
     //Build a navigation bar using the $classifications array
     $navList = '<ul class="navlist">';
     $navList .= "<li><a href='/phpmotors/index.php?action=home' title='View the PHP Motors home page'>Home</a></li>";
@@ -48,6 +47,8 @@ function nav($classifications)
 
 //Build the classification select list
 function buildClassificationList($classifications) {
+  $classifications = getClassifications();
+
   $classificationList = '<select name="classificationId" id="classificationList">';
   $classificationList .= "<option>Choose a Classification</option>";
   foreach ($classifications as $classification) {

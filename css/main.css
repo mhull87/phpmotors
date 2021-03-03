@@ -131,6 +131,26 @@ figcaption {
   color: crimson;
 }
 
+.success {
+  color: rgb(91, 218, 79);
+}
+
+.error {
+  color: crimson;
+}
+
+.table {
+  margin: 1rem auto;
+}
+
+th {
+  font-size: 1.25rem;
+}
+
+td {
+  padding: .5rem;
+}
+
 @media only screen and (min-width: 375px) {
 
   .navlist li a {
