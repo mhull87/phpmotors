@@ -107,7 +107,7 @@ switch ($action)
     $invId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
     $invInfo = getInvItemInfo($invId);
     if (count($invInfo) < 1) {
-      $message = 'Sorry, no vehicle information could be found.';
+      $message = '<p class="error">Sorry, no vehicle information could be found.</p>';
     }
     include '../view/vehicle-update.php';
     exit;
