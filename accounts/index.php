@@ -73,7 +73,7 @@ switch ($action)
       exit;
     }
 
-  break;
+    break;
 
   case 'Login':
     // Filter and store the data
@@ -115,14 +115,14 @@ switch ($action)
     include '../view/admin.php';
     exit;
   
-  break;
+    break;
 
   case 'Logout':
     session_unset();
     session_destroy();
     header('Location: ../');
     exit;
-  break;
+    break;
 
   case 'getClientById':
     $clientId = filter_input(INPUT_GET, 'clientId', FILTER_VALIDATE_INT);
@@ -130,8 +130,17 @@ switch ($action)
     if (count($clientInfo) < 1) {
       $message = '<p class="error">Sorry, no client information could be found.</p>';
     }
+
+    //remove the password from the array
+    //the array_pop function removes the last
+    //element from an array
+    array_pop($clientInfo);
+    //store the array into the session
+    $_SESSION['clientInfo'] = $clientInfo;
+    //sent them to the admin view
+
     include '../view/client-update.php';
-  break;
+    break;
 
   case 'uniqueEmail':
     //get clientEmail
@@ -141,8 +150,7 @@ switch ($action)
     //checking for existing email address
     $uniqueEmail = uniqueEmail($clientEmail);
     echo json_encode($uniqueEmail);
-
-  break;
+    break;
 
   case 'updateClient':
     // Filter and store the data
@@ -166,42 +174,37 @@ switch ($action)
     // check and report the result
     if ($updateClientOutcome === 1) 
     {
-      $_SESSION['infomessage'] = "<p class='success'>Thanks for updating your information, $clientFirstname.</p>";
-      $clientData = getClient($clientEmail);
-      //remove the password from the array
-      //the array_pop function removes the last
-      //element from an array
-      array_pop($clientData);
-      //store the array into the session
-      $_SESSION['clientData'] = $clientData;
-
+      $_SESSION['message'] = "<p class='success'>Thanks for updating your information, $clientFirstname.</p>";
       header('Location: /phpmotors/accounts/');
       exit;
     }
     else
     {
-      $_SESSION['infomessage'] = "<p class='error'>Sorry $clientFirstname, but the update failed. Please try again.</p>";
+      $_SESSION['message'] = "<p class='error'>Sorry $clientFirstname, but the update failed. Please try again.</p>";
       header('Location: /phpmotors/accounts/');
       exit;
     }
-  break;
+    break;
 
   case 'updatePassword':
     // Filter and store the data
     $clientPassword = filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_STRING);
     $clientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT);
+    $clientFirstname = $_SESSION['clientInfo']['clientFirstname'];
+    $clientLastname = $_SESSION['clientInfo']['clientLastname'];
+    $clientEmail = $_SESSION['clientInfo']['clientEmail'];
     $checkPassword = checkPassword($clientPassword);
 
     // check for missing data
     if (empty($checkPassword))
     {
-      $message = "<p class='error'>Please provide a new password.</p>";
+      $message = "<p class='error'>Error: Password update failed. Please try again</p>";
       include '../view/client-update.php';
       exit;
     }
 
     //hash the checked password
-    $hashedPassword = password_hash($clientPassword, PASSWORD_DEFAULT);
+    $hashedPassword = password_hash($checkPassword, PASSWORD_DEFAULT);
 
     //send the data to the model
     $updatePasswordOutcome = updatePassword($hashedPassword, $clientId);
@@ -209,17 +212,18 @@ switch ($action)
     // check and report the result
     if ($updatePasswordOutcome === 1) 
     {
-      $_SESSION['passmessage'] = "<p class='success'>Thanks for updating your password, $clientFirstname.</p>";
+      $_SESSION['message'] = "<p class='success'>Thanks for updating your password, $clientFirstname.</p>";
+      //display the admin view
       header('Location: /phpmotors/accounts/');
       exit;
     }
     else
     {
-      $$_SESSION['passmessage'] = "<p class='error'>Sorry $clientFirstname, but the password update failed. Please try again.</p>";
+      $$_SESSION['message'] = "<p class='error'>Sorry $clientFirstname, but the password update failed. Please try again.</p>";
       header('Location: /phpmotors/accounts/');
       exit;
     }
-  break;
+    break;
 
   default:
     include '../view/admin.php';

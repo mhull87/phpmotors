@@ -39,8 +39,5 @@ include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/header.php';
 
 <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/footer.php'; 
 
-unset($_SESSION['infomessage']);
-unset($_SESSION['passmessage']);
 unset($_SESSION['message']);
-
 ?>

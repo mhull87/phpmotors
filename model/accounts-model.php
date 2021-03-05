@@ -103,8 +103,8 @@ function updateClient($clientFirstname, $clientLastname, $clientEmail, $clientId
   return $rowsChanged;
  }
 
-  //get client data based on the client id
-  function getClientById($clientId)
+//get client data based on the client id
+function getClientById($clientId)
   {
     $db = phpmotorsConnect();
  
@@ -124,7 +124,7 @@ function updateClient($clientFirstname, $clientLastname, $clientEmail, $clientId
    return $clientInfo;
   }
 
-   //update client password
+//update client password
 function updatePassword($clientPassword, $clientId) {
   // Create a connection object using the phpmotors connection function
   $db = phpmotorsConnect();
@@ -145,5 +145,5 @@ function updatePassword($clientPassword, $clientId) {
   $stmt->closeCursor();
   // Return the indication of success (rows changed)
   return $rowsChanged;
- }
- ?>
+}
+?>
