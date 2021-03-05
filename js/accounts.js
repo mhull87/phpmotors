@@ -6,17 +6,22 @@ email.addEventListener("change", function () {
   let uniqueEmailURL = "/phpmotors/accounts/index.php?action=uniqueEmail&clientEmail=" + change;
   fetch(uniqueEmailURL)
   .then(function (response) {  
-    let newEmail = decodeURIComponent(change);
-  console.log(newEmail);
-
     if (response.ok) {
-      return response.json();
+      return response.text();
     }
     throw Error("Network response was not OK");
   })
   .then(function (data) {
-    console.log(data);
+    console.log(data)
+    if (data == 0) {
+      document.getElementById('errdiv').innerText = "";
+      document.getElementById('update').disabled = false;
+    } else {
+      document.getElementById('update').disabled = true;
+      document.getElementById('errdiv').innerText = "That email address already exists.";
+    }
   })
+
   .catch(function (error) {
     console.log('There was a problem: ', error.message)
   })

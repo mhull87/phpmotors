@@ -28,10 +28,12 @@ if (isset($message)) {
     <label for="lname">Last Name: </label><br>
     <input name="clientLastname" id="lname" type="text" <?php if (isset($clientLastname)) {echo "value='$clientLastname'";} elseif(isset($clientInfo['clientLastname'])) {echo "value='$clientInfo[clientLastname]'";} ?> required><br><br>
 
+  <div id="errdiv" class="error"></div>
+
     <label for="email">Email: </label><br>
     <input name="clientEmail" id="email" type="email" <?php if (isset($clientEmail)) {echo "value='$clientEmail'";} elseif(isset($clientInfo['clientEmail'])) {echo "value='$clientInfo[clientEmail]'";} ?> required><br><br>
 
-    <input type="submit" value="Update Client">
+    <input id="update" type="submit" value="Update Client">
     <!-- Add the action name - value pair -->
     <input type="hidden" name="action" value="updateClient">
     <input type="hidden" name="clientId" value="<?php if (isset($clientInfo['clientId'])) {echo $clientInfo['clientId'];} elseif(isset($clientId)) {echo $clientId;} ?>">

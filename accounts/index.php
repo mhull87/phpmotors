@@ -135,18 +135,13 @@ switch ($action)
 
   case 'uniqueEmail':
     //get clientEmail
-    $clientEmail = filter_input(INPUT_GET, 'clientEmail', FILTER_SANITIZE_EMAIL);
-    echo $clientEmail;
+    $clientEmail = filter_input(INPUT_GET, 'clientEmail');
+    $clientEmail = urldecode($clientEmail);
+
     //checking for existing email address
     $uniqueEmail = uniqueEmail($clientEmail);
     echo json_encode($uniqueEmail);
 
-    if ($uniqueEmail) 
-    {
-      $message = '<p class="error">That email address already exists.</p>';
-      include '../view/client-update.php';
-      exit;
-    }
   break;
 
   case 'updateClient':
