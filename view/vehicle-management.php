@@ -34,9 +34,9 @@ include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/header.php';
   </noscript>
   <table id="inventoryDisplay" class='table'></table>
 </main>
+<script src="../js/inventory.js"></script>
 
 <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/footer.php'; ?>
 
-<script src="../js/inventory.js"></script>
 
 <?php unset($_SESSION['message']); ?>

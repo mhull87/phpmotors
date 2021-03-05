@@ -68,10 +68,10 @@ include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/header.php'; ?>
     <textarea name="invDescription" id="invDescription" rows="6" cols="20" required><?php if (isset($invDescription)) {echo $invDescription;} elseif(isset($invInfo['invDescription'])) {echo $invInfo['invDescription'];} ?></textarea><br><br>
 
     <label for="invImage">Image Path</label><br>
-    <input name="invImage" id="invImage" type="text" value="../images/no-image.png" <?php if (isset($invImage)) {echo "value='$invImage'";} elseif(isset($invInfo['invImage'])) {echo "value='$invInfo[invImage]'";} ?> required><br><br>
+    <input name="invImage" id="invImage" type="text" <?php if (isset($invImage)) {echo "value='$invImage'";} elseif(isset($invInfo['invImage'])) {echo "value='$invInfo[invImage]'";} ?> required><br><br>
 
     <label for="invThumbnail">Thumbnail Path</label><br>
-    <input name="invThumbnail" id="invThumbnail" type="text" value="../images/no-image.png" <?php if (isset($invThumbnail)) {echo "value='$invThumbnail'";} elseif(isset($invInfo['invThumbnail'])) {echo "value='$invInfo[invThumbnail]'";} ?> required><br><br>
+    <input name="invThumbnail" id="invThumbnail" type="text" <?php if (isset($invThumbnail)) {echo "value='$invThumbnail'";} elseif(isset($invInfo['invThumbnail'])) {echo "value='$invInfo[invThumbnail]'";} ?> required><br><br>
 
     <label for="invPrice">Price</label><br>
     $<input name="invPrice" id="invPrice" type="text" placeholder='1200.00' pattern="^\d+(?:\.\d{2})$" <?php if (isset($invPrice)) {echo "value='$invPrice'";} elseif(isset($invInfo['invPrice'])) {echo "value='$invInfo[invPrice]'";} ?> required><br><br>

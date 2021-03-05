@@ -95,7 +95,7 @@ switch ($action)
     //compare the password just submitted against
     //the hashed password for the matching client
     $hashCheck = password_verify($clientPassword, $clientData['clientPassword']);
-    //if the hashes doen't match create an error 
+    //if the hashes don't match create an error 
     //and return to the login view
     if (!$hashCheck) 
     {
@@ -126,18 +126,10 @@ switch ($action)
 
   case 'getClientById':
     $clientId = filter_input(INPUT_GET, 'clientId', FILTER_VALIDATE_INT);
-    $clientInfo = getClientById($clientId);
-    if (count($clientInfo) < 1) {
+    $clientData = getClientById($clientId);
+    if (count($clientData) < 1) {
       $message = '<p class="error">Sorry, no client information could be found.</p>';
     }
-
-    //remove the password from the array
-    //the array_pop function removes the last
-    //element from an array
-    array_pop($clientInfo);
-    //store the array into the session
-    $_SESSION['clientInfo'] = $clientInfo;
-    //sent them to the admin view
 
     include '../view/client-update.php';
     break;
@@ -171,10 +163,20 @@ switch ($action)
     //send the data to the model
     $updateClientOutcome = updateClient($clientFirstname, $clientLastname, $clientEmail, $clientId);
 
+    
     // check and report the result
     if ($updateClientOutcome === 1) 
     {
       $_SESSION['message'] = "<p class='success'>Thanks for updating your information, $clientFirstname.</p>";
+      $clientData = getClientById($clientId);
+
+      //remove the password from the array
+      //the array_pop function removes the last
+      //element from an array
+      array_pop($clientData);
+      //store the array into the session
+      $_SESSION['clientData'] = $clientData;
+      //sent them to the admin view
       header('Location: /phpmotors/accounts/');
       exit;
     }
@@ -190,9 +192,7 @@ switch ($action)
     // Filter and store the data
     $clientPassword = filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_STRING);
     $clientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT);
-    $clientFirstname = $_SESSION['clientInfo']['clientFirstname'];
-    $clientLastname = $_SESSION['clientInfo']['clientLastname'];
-    $clientEmail = $_SESSION['clientInfo']['clientEmail'];
+    $clientFirstname = $_SESSION['clientData']['clientFirstname'];
     $checkPassword = checkPassword($clientPassword);
 
     // check for missing data
@@ -204,7 +204,7 @@ switch ($action)
     }
 
     //hash the checked password
-    $hashedPassword = password_hash($checkPassword, PASSWORD_DEFAULT);
+    $hashedPassword = password_hash($clientPassword, PASSWORD_DEFAULT);
 
     //send the data to the model
     $updatePasswordOutcome = updatePassword($hashedPassword, $clientId);
@@ -213,13 +213,21 @@ switch ($action)
     if ($updatePasswordOutcome === 1) 
     {
       $_SESSION['message'] = "<p class='success'>Thanks for updating your password, $clientFirstname.</p>";
-      //display the admin view
+      $clientData = getClientById($clientId);
+
+      //remove the password from the array
+      //the array_pop function removes the last
+      //element from an array
+      array_pop($clientData);
+      //store the array into the session
+      $_SESSION['clientData'] = $clientData;
+      //sent them to the admin view
       header('Location: /phpmotors/accounts/');
       exit;
     }
     else
     {
-      $$_SESSION['message'] = "<p class='error'>Sorry $clientFirstname, but the password update failed. Please try again.</p>";
+      $_SESSION['message'] = "<p class='error'>Sorry $clientFirstname, but the password update failed. Please try again.</p>";
       header('Location: /phpmotors/accounts/');
       exit;
     }

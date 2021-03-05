@@ -117,11 +117,11 @@ function getClientById($clientId)
  
    $stmt->execute();
  
-   $clientInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+   $clientData = $stmt->fetch(PDO::FETCH_ASSOC);
  
    $stmt->closeCursor();
  
-   return $clientInfo;
+   return $clientData;
   }
 
 //update client password

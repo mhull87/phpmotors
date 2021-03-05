@@ -33,4 +33,6 @@ if (isset($_SESSION['message']))
   <a href="/phpmotors/accounts/index.php?action=register" title="Register for a PHP Motors account.">Not a member yet?</a>
 </main>
 
-<?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/footer.php'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/footer.php'; 
+unset($_SESSION['message']);
+?>
