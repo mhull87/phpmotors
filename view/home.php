@@ -11,7 +11,7 @@
       <p>Fuzzy dice!</p>
     </section>
 
-    <img class='delorean' src="/phpmotors/images/delorean.jpg" alt="Delorean">
+    <img class='delorean' src="/phpmotors/images/vehicles/delorean.jpg" alt="Delorean">
 
     <div class="buttondiv">
       <button>Own Today</button>

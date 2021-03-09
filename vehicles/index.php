@@ -166,7 +166,7 @@ switch ($action)
     }
     include '../view/vehicle-delete.php';
     exit;
-  break;
+    break;
 
   case 'deleteVehicle':
     //Filter and store data
@@ -175,7 +175,7 @@ switch ($action)
     $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
 
     $deleteOutcome = deleteVehicle($invId);
-;
+
     //check and report the result
     if ($deleteOutcome === 1)
     {
@@ -191,7 +191,18 @@ switch ($action)
       header('Location: /phpmotors/vehicles/');
       exit;
     }
-  break;
+    break;
+
+  case 'classification':
+    $classificationName = filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_STRING);
+    $vehicles = getVehiclesByClassification($classificationName);
+    if (!count($vehicles)) {
+      $message - "<p class='error'>Sorry, no $classificationName vehicles could be found.</p>";
+    } else {
+      $vehicleDisplay = buildVehiclesDisplay($vehicles);
+    }
+    include '../view/classification.php';
+    break;
 
   default:
     $classificationList = buildClassificationList($classificationList);
