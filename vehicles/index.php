@@ -197,17 +197,33 @@ switch ($action)
     $classificationName = filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_STRING);
     $vehicles = getVehiclesByClassification($classificationName);
     if (!count($vehicles)) {
-      $message - "<p class='error'>Sorry, no $classificationName vehicles could be found.</p>";
+      $message = "<p class='error'>Sorry, no $classificationName vehicles could be found.</p>";
     } else {
-      $vehicleDisplay = buildVehiclesDisplay($vehicles);
+      $vehicleDisplay = buildVehiclesDisplay($vehicles, $classificationName);
     }
     include '../view/classification.php';
+    break;
+
+  case 'vehicle':
+    $classificationName = filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_STRING);
+    $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT);
+    $vehicle = getInvItemInfo($invId);
+    
+    $make = $vehicle['invMake'];
+    $model = $vehicle['invModel'];
+    if (!count($vehicle)) {
+      $message = "<p class='error'>Sorry, no $make $model vehicle found.</p>";
+    } else {
+      $vehiclePage = buildVehiclePage($vehicle, $classificationName);
+    }
+    include '../view/details.php';
     break;
 
   default:
     $classificationList = buildClassificationList($classificationList);
     
     include '../view/vehicle-management.php';
+    break;
 }
 
 ?>

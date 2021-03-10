@@ -40,7 +40,6 @@ function nav($classifications)
                     $classification[classificationName]</a>
                     </li>";
     }
-
     $navList .= '</ul>';
     return $navList;
   }
@@ -59,17 +58,51 @@ function buildClassificationList($classifications) {
 }
 
 // Build a display of vehicles within an unordered list
-function buildVehiclesDisplay($vehicles) {
+function buildVehiclesDisplay($vehicles, $classificationName) {
   $dv = '<ul id="inv-display">';
   foreach ($vehicles as $vehicle) {
     $dv .= '<li>';
-    $dv .= "<p><img src='$vehicle[invThumbnail]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'></p>";
+    $dv .= "<p><a href='/phpmotors/vehicles/?action=vehicle&invId=".urlencode($vehicle['invId'])."&classificationName=".urlencode($classificationName)."'><img src='$vehicle[invThumbnail]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'></a></p>";
     $dv .= '<hr>';
-    $dv .= "<h2>$vehicle[invMake] $vehicle[invModel]</h2>";
+    $dv .= "<h2><a href='/phpmotors/vehicles/?action=vehicle&invId=".urlencode($vehicle['invId'])."'>$vehicle[invMake] $vehicle[invModel]</a></h2>";
     $dv .= "<div>$vehicle[invPrice]</div>";
     $dv .= '</li>';
   }
   $dv .= '</ul>';
   return $dv;
+}
+
+function buildVehiclePage($vehicle, $classificationName) {
+  $vp = "<h2>$".number_format($vehicle['invPrice'], 2)."</h2>";
+  $vp .= "<div>";
+  $vp .= "<span class='float center'>";
+ $vp .= "<img src='$vehicle[invImage]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
+ $vp .= "</span>";
+ $vp .= "</div>";
+ $vp .= "<table class='table detailstable' id='inventoryDisplay'>";
+ $vp .= "<caption>Vehicle Details</caption>";
+ $vp .= "<tr>";
+ $vp .= "<th>Make</th><td>$vehicle[invMake]</td>";
+ $vp .= "</tr>";
+ $vp .= "<tr>";
+ $vp .= "<th>Model</th><td>$vehicle[invModel]</td>";
+ $vp .= "</tr>";
+ $vp .= "<tr>";
+ $vp .= "<th>Price</th><td>$".number_format($vehicle['invPrice'], 2)."</td>";
+ $vp .= "</tr>";
+ $vp .= "<tr>";
+ $vp .= "<th>Description</th><td>$vehicle[invDescription]</td>";
+ $vp .= "</tr>";
+ $vp .= "<tr>";
+ $vp .= "<th>Color</th><td>$vehicle[invColor]</td>";
+ $vp .= "</tr>";
+ $vp .= "<tr>";
+ $vp .= "<th>Classification</th><td>$classificationName</td>";
+ $vp .= "</tr>";
+ $vp .= "<tr>";
+ $vp .= "<th>In Stock</th><td>$vehicle[invStock]</td>";
+ $vp .= "</tr>";
+ $vp .= "</table>";
+  return $vp;
 }
 ?>

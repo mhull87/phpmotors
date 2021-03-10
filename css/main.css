@@ -151,6 +151,29 @@ figcaption {
   margin: 1rem auto;
 }
 
+.detailstable {
+  border: #4c96d7 3px solid;
+
+}
+
+.detailstable tr:nth-child(even) {
+  background-color: #bababa;
+}
+
+.detailstable tr:hover {
+  background-color: #a6cbeb;
+}
+
+.detailstable th {
+  text-align: left;
+  background-color: #4c96d7;
+}
+
+caption {
+  text-align: left;
+  font-size: 2rem;
+}
+
 th {
   font-size: 1.25rem;
 }
@@ -188,6 +211,18 @@ td {
 
 hr {
   margin: 0;
+}
+
+.center {
+  text-align: center;
+}
+
+.center img {
+  max-width: 100%;
+}
+
+footer {
+  clear: both;
 }
 
 @media only screen and (min-width: 375px) {
@@ -264,10 +299,13 @@ hr {
     justify-content: space-between;
     margin: 0 auto .5em;
     padding-bottom: 2%;
-  
   }
 
   #inv-display div {
     width: 100%;
+  }
+
+  .float {
+    float: left;
   }
 }
