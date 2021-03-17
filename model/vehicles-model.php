@@ -80,7 +80,7 @@ function getInvItemInfo($invId) {
   $stmt = $db->prepare($sql);
   $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
   $stmt->execute();
-  $invInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+  $invInfo = $stmt->fetchAll(PDO::FETCH_ASSOC);
   $stmt->closeCursor();
   return $invInfo;
 }
@@ -144,7 +144,7 @@ return $rowsChanged;
 
 function getVehiclesByClassification($classificationName) {
   $db = phpmotorsConnect();
-  $sql = 'SELECT * FROM inventory WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName)';
+  $sql = 'SELECT invId, invMake, invModel, invDescription, invImage, invPrice, invStock, invColor, classificationId FROM inventory WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName)';
   $stmt = $db->prepare($sql);
   $stmt->bindValue(':classificationName', $classificationName, PDO::PARAM_STR);
   $stmt->execute();
@@ -153,4 +153,36 @@ function getVehiclesByClassification($classificationName) {
   return $vehicles;
 }
 
+// Get information for all vehicles
+function getVehicles(){
+	$db = phpmotorsConnect();
+	$sql = 'SELECT invId, invMake, invModel FROM inventory';
+	$stmt = $db->prepare($sql);
+	$stmt->execute();
+	$invInfo = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$stmt->closeCursor();
+	return $invInfo;
+}
+
+function getPrimaryImage($invId) {
+  $db = phpmotorsConnect();
+  $sql = 'SELECT imgPath FROM images JOIN inventory ON images.invId = inventory.invId WHERE invId = :invId AND imgPrimary = 1';
+  $stmt = $db->prepare($sql);
+  $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+  $stmt->execute();
+  $primary = $stmt->fetch(PDO::FETCH_ASSOC);
+  $stmt->closeCursor();
+  return $primary;
+}
+
+function getThumbnail($invId) {
+  $db = phpmotorsConnect();
+  $sql = 'SELECT imgPath FROM images JOIN inventory ON images.invId = inventory.invId WHERE imgName LIKE "%-tn%" AND imgPrimary = 0';
+  $stmt = $db->prepare($sql);
+  $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+  $stmt->execute();
+  $thumbnail = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $stmt->closeCursor();
+  return $thumbnail;
+}
 ?>

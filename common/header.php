@@ -12,10 +12,12 @@
     echo "Modify $invMake $invModel | PHP Motors";
   } elseif (isset($_SESSION['delete']) && isset($invInfo['invMake']) && isset($invInfo['invModel'])) {
     echo "Delete $invInfo[invMake] $invInfo[invModel] | PHP Motors";
-  } else if (isset($classificationName) && isset($make) && isset($model)) {
+  } elseif (isset($classificationName) && isset($make) && isset($model)) {
     echo "$make $model Details | PHP Motots";
-  } else if (isset($classificationName)) {
+  } elseif (isset($classificationName)) {
     echo "$classificationName | PHP Motors";
+  } elseif (isset($imageadmin)) {
+    echo "Image Management | PHP Motors";
   } else {
     echo 'PHP Motors';
   }

@@ -88,7 +88,7 @@ switch ($action)
         }
     }
 
-  break;
+    break;
 
   /**************************************************
    *  Get vehicles by classificationId
@@ -101,7 +101,7 @@ switch ($action)
     $inventoryArray = getInventoryByClassification($classificationId);
     //Convert the array to a JSON object and sent it back
     echo json_encode($inventoryArray);
-  break;
+    break;
 
   case 'mod':
     $invId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
@@ -111,7 +111,7 @@ switch ($action)
     }
     include '../view/vehicle-update.php';
     exit;
-  break;
+    break;
   
   case 'updateVehicle':
     //Filter and store data
@@ -155,7 +155,7 @@ switch ($action)
       }
     }
     
-  break;
+    break;
 
   case 'del':
     $invId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
@@ -196,10 +196,12 @@ switch ($action)
   case 'classification':
     $classificationName = filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_STRING);
     $vehicles = getVehiclesByClassification($classificationName);
+    $invId = $vehicles['$invId'];
+    $thumbnail = getThumbnail($invId);
     if (!count($vehicles)) {
       $message = "<p class='error'>Sorry, no $classificationName vehicles could be found.</p>";
     } else {
-      $vehicleDisplay = buildVehiclesDisplay($vehicles, $classificationName);
+      $vehicleDisplay = buildVehiclesDisplay($vehicles, $classificationName, $thumbnail);
     }
     include '../view/classification.php';
     break;

@@ -1,4 +1,7 @@
-<?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/header.php'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/header.php'; 
+    var_dump($thumbnail);
+
+?>
 
 <main>
   <h1><?php echo $classificationName; ?> vehicles</h1>
