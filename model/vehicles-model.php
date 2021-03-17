@@ -80,7 +80,7 @@ function getInvItemInfo($invId) {
   $stmt = $db->prepare($sql);
   $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
   $stmt->execute();
-  $invInfo = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $invInfo = $stmt->fetch(PDO::FETCH_ASSOC);
   $stmt->closeCursor();
   return $invInfo;
 }
@@ -175,11 +175,11 @@ function getPrimaryImage($invId) {
   return $primary;
 }
 
-function getThumbnail($invId) {
+function getThumbnails($invId) {
   $db = phpmotorsConnect();
-  $sql = 'SELECT imgPath FROM images JOIN inventory ON images.invId = inventory.invId WHERE imgName LIKE "%-tn%" AND imgPrimary = 0';
+  $sql = 'SELECT imgPath FROM images JOIN inventory ON images.invid = inventory.invId WHERE imgName LIKE "%-tn%" AND imgPrimary = 0 AND images.invid = :invId';
   $stmt = $db->prepare($sql);
-  $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+  $stmt->bindValue(':invId', $invId);
   $stmt->execute();
   $thumbnail = $stmt->fetchAll(PDO::FETCH_ASSOC);
   $stmt->closeCursor();

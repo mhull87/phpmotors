@@ -6,9 +6,12 @@
     echo $message; 
   } ?>
 
+<div  class='detailscontainer'>
   <?php if (isset($vehiclePage)) {
     echo $vehiclePage;
+    echo $displayThumbnails;
   } ?>
+  </div>
 </main>
 
 <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/footer.php'; ?>

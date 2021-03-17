@@ -62,7 +62,7 @@ function buildVehiclesDisplay($vehicles, $classificationName) {
   $dv = '<ul id="inv-display">';
   foreach ($vehicles as $vehicle) {
     $dv .= '<li>';
-    $dv .= "<p><a href='/phpmotors/vehicles/?action=vehicle&invId=".urlencode($vehicle['invId'])."&classificationName=".urlencode($classificationName)."'><img src='$vehicle[invThumbnail]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'></a></p>";
+    $dv .= "<p><a href='/phpmotors/vehicles/?action=vehicle&invId=".urlencode($vehicle['invId'])."&classificationName=".urlencode($classificationName)."'><img src='$vehicle[invImage]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'></a></p>";
     $dv .= '<hr>';
     $dv .= "<h2><a href='/phpmotors/vehicles/?action=vehicle&invId=".urlencode($vehicle['invId'])."'>$vehicle[invMake] $vehicle[invModel]</a></h2>";
     $dv .= "<div>$".number_format($vehicle['invPrice'], 2)."</div>";
@@ -73,9 +73,8 @@ function buildVehiclesDisplay($vehicles, $classificationName) {
 }
 
 function buildVehiclePage($vehicle, $classificationName) {
-  $vp = "<h2>$".number_format($vehicle['invPrice'], 2)."</h2>";
-  $vp .= "<div>";
-  $vp .= "<span class='float center'>";
+  $vp = "<div class='detailstop'><h2>$".number_format($vehicle['invPrice'], 2)."</h2>";
+  $vp .= "<span class='center'>";
  $vp .= "<img src='$vehicle[invImage]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
  $vp .= "</span>";
  $vp .= "</div>";
@@ -104,6 +103,16 @@ function buildVehiclePage($vehicle, $classificationName) {
  $vp .= "</tr>";
  $vp .= "</table>";
   return $vp;
+}
+
+function displayThumbnails($thumbnails) {
+  $dt = '<h3 class="thumbheader">Thumbnails</h3>';
+  $dt .= '<ul class="thumbul float">';
+  foreach ($thumbnails as $thumbnail) {
+    $dt .= "<li><img class='thumbnail' src='$thumbnail[imgPath]' alt='Thumbnail image'></li>";
+  }
+  $dt .= '</ul>';
+  return $dt;
 }
 
 /* * ********************************

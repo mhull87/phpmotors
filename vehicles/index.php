@@ -196,12 +196,11 @@ switch ($action)
   case 'classification':
     $classificationName = filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_STRING);
     $vehicles = getVehiclesByClassification($classificationName);
-    $invId = $vehicles['$invId'];
-    $thumbnail = getThumbnail($invId);
+
     if (!count($vehicles)) {
       $message = "<p class='error'>Sorry, no $classificationName vehicles could be found.</p>";
     } else {
-      $vehicleDisplay = buildVehiclesDisplay($vehicles, $classificationName, $thumbnail);
+      $vehicleDisplay = buildVehiclesDisplay($vehicles, $classificationName);
     }
     include '../view/classification.php';
     break;
@@ -210,13 +209,16 @@ switch ($action)
     $classificationName = filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_STRING);
     $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT);
     $vehicle = getInvItemInfo($invId);
-    
+    $invId = $vehicle['invId'];
+    $thumbnails = getThumbnails($invId);
+
     $make = $vehicle['invMake'];
     $model = $vehicle['invModel'];
     if (!count($vehicle)) {
       $message = "<p class='error'>Sorry, no $make $model vehicle found.</p>";
     } else {
       $vehiclePage = buildVehiclePage($vehicle, $classificationName);
+      $displayThumbnails = displayThumbnails($thumbnails);
     }
     include '../view/details.php';
     break;
