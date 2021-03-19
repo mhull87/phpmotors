@@ -118,9 +118,7 @@ button {
 }
 
 .deloreanupgradesfig {
-  background-color: #4c96d7;
   border: 2px solid black;
-  padding: 5px 45px;
   width: 75px;
   height: 75px;
   margin: 3%;
@@ -236,6 +234,10 @@ footer {
 
 .thumbul {
   list-style-type: none;
+}
+
+ul {
+  list-style: none;
 }
 
 @media only screen and (min-width: 375px) {

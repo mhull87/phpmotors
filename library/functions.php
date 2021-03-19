@@ -133,7 +133,7 @@ function buildImageDisplay($imageArray) {
   foreach ($imageArray as $image) {
     $id .= '<li>';
     $id .= "<img src='$image[imgPath]' title='$image[invMake] $image[invModel] image on PHP Motors.com' alt='$image[invMake] $image[invModel] image on PHP Motors.com'>";
-    $id .= "<p><a href='/phpmotors/uploads?action=delete&image[imgId]&filename=$image[imgName]' title='Delete the image'>Delete $image[imgName]</a></p>";
+    $id .= "<p><a href='/phpmotors/uploads?action=delete&imgid=$image[imgid]&filename=$image[imgName]' title='Delete the image'>Delete $image[imgName]</a></p>";
     $id .= '</li>';
   }
   $id .= '</ul>';

@@ -58,7 +58,7 @@ switch ($action) {
   case 'delete':
       // Get the image name and id
 $filename = filter_input(INPUT_GET, 'filename', FILTER_SANITIZE_STRING);
-$imgId = filter_input(INPUT_GET, 'imgId', FILTER_VALIDATE_INT);
+$imgId = filter_input(INPUT_GET, 'imgid', FILTER_VALIDATE_INT);
       
 // Build the full path to the image to be deleted
 $target = $image_dir_path . '/' . $filename;
@@ -76,9 +76,9 @@ if ($result) {
       
 // Set a message based on the delete result
 if ($remove) {
- $message = "<p class='notice'>$filename was successfully deleted.</p>";
+ $message = "<p class='success'>$filename was successfully deleted.</p>";
 } else {
- $message = "<p class='notice'>$filename was NOT deleted.</p>";
+ $message = "<p class='error'>$filename was NOT deleted.</p>";
 }
       
 // Store message to session
@@ -102,7 +102,7 @@ header('location: .');
       $vehicles = getVehicles();
       //build a select list of vehicle information for the view
       $prodSelect = buildVehiclesSelect($vehicles);
-
+      $_SESSION['imageadmin'] = 'imageadmin';
       include '../view/image-admin.php';
       exit;
     break;
