@@ -21,7 +21,7 @@ function checkPassword($clientPassword)
   }
 
 //check price for only digits and 2 numbers after the decimal
- function checkPrice($invPrice)
+function checkPrice($invPrice)
   {
     $pattern= '/^\d+(?:\.\d{2})$/';
     return preg_match($pattern, $invPrice);
@@ -55,7 +55,7 @@ function buildClassificationList($classifications) {
   }
   $classificationList .= '</select>';
   return $classificationList;
-}
+  }
 
 // Build a display of vehicles within an unordered list
 function buildVehiclesDisplay($vehicles, $classificationName) {
@@ -70,7 +70,7 @@ function buildVehiclesDisplay($vehicles, $classificationName) {
   }
   $dv .= '</ul>';
   return $dv;
-}
+  }
 
 function buildVehiclePage($vehicle, $classificationName) {
   $vp = "<div class='detailstop'><h2>$".number_format($vehicle['invPrice'], 2)."</h2>";
@@ -103,7 +103,7 @@ function buildVehiclePage($vehicle, $classificationName) {
  $vp .= "</tr>";
  $vp .= "</table>";
   return $vp;
-}
+  }
 
 function displayThumbnails($thumbnails) {
   $dt = '<h3 class="thumbheader">Thumbnails</h3>';
@@ -113,7 +113,7 @@ function displayThumbnails($thumbnails) {
   }
   $dt .= '</ul>';
   return $dt;
-}
+  }
 
 /* * ********************************
 *  Functions for working with images
@@ -125,7 +125,7 @@ function makeThumbnailName($image) {
   $ext = substr ($image, $i);
   $image = $image_name.'-tn'.$ext;
   return $image;
-}
+  }
 
 //build images display for image management view
 function buildImageDisplay($imageArray) {
@@ -138,7 +138,7 @@ function buildImageDisplay($imageArray) {
   }
   $id .= '</ul>';
   return $id;
-}
+  }
 
 //build the vehicles select list
 function buildVehiclesSelect($vehicles) {
@@ -149,7 +149,7 @@ function buildVehiclesSelect($vehicles) {
   }
   $prodList .= '</select>';
   return $prodList;
-}
+  }
 
 //handles the file upload process and returns the path
 //the file path is stored into the database
@@ -175,7 +175,7 @@ function uploadFile($name) {
     //returns the path where the file is stored 
     return $filepath;
   }
-}
+  }
 
 //processes images by getting paths and creating smaller versions of the image
 function processImage($dir, $filename) {
@@ -193,7 +193,7 @@ function processImage($dir, $filename) {
 
   //resize the original to a maximum of 500 pixels square
   resizeImage($image_path, $image_path, 500, 500);
-}
+  }
 
 //checks and resizes image
 function resizeImage($old_image_path, $new_image_path, $max_width, $max_height) {
@@ -265,5 +265,5 @@ function resizeImage($old_image_path, $new_image_path, $max_width, $max_height) 
   }
   //free any memory associated with the old image
   imagedestroy($old_image);
-} // ends resizeImage function
+  } // ends resizeImage function
 ?>

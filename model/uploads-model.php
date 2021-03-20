@@ -26,7 +26,7 @@ function storeImages ($imgPath, $invId, $imgName, $imgPrimary) {
   $rowsChanged = $stmt->rowCount();
   $stmt->closeCursor();
   return $rowsChanged;
-}
+  }
 
 //get image information from images table
 function getImages() {
@@ -37,7 +37,7 @@ function getImages() {
   $imageArray = $stmt->fetchAll(PDO::FETCH_ASSOC);
   $stmt->closeCursor();
   return $imageArray;
-}
+  }
 
 // Delete image information from the images table
 function deleteImage($imgId) {
@@ -61,5 +61,5 @@ function checkExistingImage($imgName) {
   $imageMatch = $stmt->fetch();
   $stmt->closeCursor();
   return $imageMatch;
-}
+  }
 ?>
