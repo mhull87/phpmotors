@@ -57,35 +57,35 @@ switch ($action) {
     break;
   case 'delete':
       // Get the image name and id
-$filename = filter_input(INPUT_GET, 'filename', FILTER_SANITIZE_STRING);
-$imgId = filter_input(INPUT_GET, 'imgid', FILTER_VALIDATE_INT);
-      
-// Build the full path to the image to be deleted
-$target = $image_dir_path . '/' . $filename;
-      
-// Check that the file exists in that location
-if (file_exists($target)) {
- // Deletes the file in the folder
- $result = unlink($target); 
-}
-      
-// Remove from database only if physical file deleted
-if ($result) {
- $remove = deleteImage($imgId);
-}
-      
-// Set a message based on the delete result
-if ($remove) {
- $message = "<p class='success'>$filename was successfully deleted.</p>";
-} else {
- $message = "<p class='error'>$filename was NOT deleted.</p>";
-}
-      
-// Store message to session
-$_SESSION['message'] = $message;
-      
-// Redirect to this controller for default action
-header('location: .');
+    $filename = filter_input(INPUT_GET, 'filename', FILTER_SANITIZE_STRING);
+    $imgId = filter_input(INPUT_GET, 'imgid', FILTER_VALIDATE_INT);
+          
+    // Build the full path to the image to be deleted
+    $target = $image_dir_path . '/' . $filename;
+          
+    // Check that the file exists in that location
+    if (file_exists($target)) {
+    // Deletes the file in the folder
+    $result = unlink($target); 
+    }
+          
+    // Remove from database only if physical file deleted
+    if ($result) {
+    $remove = deleteImage($imgId);
+    }
+          
+    // Set a message based on the delete result
+    if ($remove) {
+    $message = "<p class='success'>$filename was successfully deleted.</p>";
+    } else {
+    $message = "<p class='error'>$filename was NOT deleted.</p>";
+    }
+          
+    // Store message to session
+    $_SESSION['message'] = $message;
+          
+    // Redirect to this controller for default action
+    header('location: .');
     break;
   default:
       //call function to return image info from database

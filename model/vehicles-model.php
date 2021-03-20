@@ -76,7 +76,7 @@ function getInventoryByClassification($classificationId) {
 //Get vehicle information by invId
 function getInvItemInfo($invId) {
   $db = phpmotorsConnect();
-  $sql = 'SELECT * FROM inventory WHERE invId = :invId';
+  $sql = 'SELECT * FROM inventory JOIN images ON images.imgPath = inventory.invImage WHERE inventory.invId = :invId';
   $stmt = $db->prepare($sql);
   $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
   $stmt->execute();
@@ -108,14 +108,14 @@ function updateVehicle($classificationId, $invMake, $invModel, $invDescription, 
   $stmt->bindValue(':invColor', $invColor, PDO::PARAM_STR);
   $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
 
-//Insert the data
-$stmt->execute();
-//Ask how many rows changed as a result of our insert
-$rowsChanged = $stmt->rowCount();
-//Close the database
-$stmt->closeCursor();
-//Return the indication of success (rows changed)
-return $rowsChanged;
+  //Insert the data
+  $stmt->execute();
+  //Ask how many rows changed as a result of our insert
+  $rowsChanged = $stmt->rowCount();
+  //Close the database
+  $stmt->closeCursor();
+  //Return the indication of success (rows changed)
+  return $rowsChanged;
 }
 
 //delete a vehicle from the inventory list
@@ -132,14 +132,14 @@ function deleteVehicle($invId)
   //and tells the database the type of data it is
   $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
 
-//Insert the data
-$stmt->execute();
-//Ask how many rows changed as a result of our insert
-$rowsChanged = $stmt->rowCount();
-//Close the database
-$stmt->closeCursor();
-//Return the indication of success (rows changed)
-return $rowsChanged;
+  //Insert the data
+  $stmt->execute();
+  //Ask how many rows changed as a result of our insert
+  $rowsChanged = $stmt->rowCount();
+  //Close the database
+  $stmt->closeCursor();
+  //Return the indication of success (rows changed)
+  return $rowsChanged;
 }
 
 function getVehiclesByClassification($classificationName) {
