@@ -142,7 +142,7 @@ function buildImageDisplay($imageArray) {
 
 //build the vehicles select list
 function buildVehiclesSelect($vehicles) {
-  $prodList = '<select name="invId" id="invId">';
+  $prodList = '<select name="invId" id="invItem">';
   $prodList .= "<option>Choose a Vehicle</option>";
   foreach ($vehicles as $vehicle) {
     $prodList .= "<option value='$vehicle[invId]'>$vehicle[invMake] $vehicle[invModel]</option>";
