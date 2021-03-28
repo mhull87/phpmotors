@@ -219,8 +219,20 @@ switch ($action)
     } else {
       $vehiclePage = buildVehiclePage($vehicle, $classificationName);
       $displayThumbnails = displayThumbnails($thumbnails);
+      $vehicle = " $make $model";
+      $firstname =  substr($_SESSION['clientData']['clientFirstname'], 0, 1);
+      $lastName = $_SESSION['clientData']['clientLastname'];
+      $screenName = "$firstname$lastName";
     }
     include '../view/details.php';
+    break;
+
+  case 'review':
+    $clientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT);
+    $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
+    $review = filter_input(INPUT_POST, 'review', FILTER_SANITIZE_STRING);
+    insertReview($clientId, $invId, $review);
+    include '../view/admin.php';
     break;
 
   default:

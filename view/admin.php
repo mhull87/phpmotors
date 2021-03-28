@@ -35,6 +35,9 @@ include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/header.php';
   }
   ?>
 
+<h2>Reviews</h2>
+<?php echo $reviews ?>
+
 </main>
 
 <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/footer.php'; 

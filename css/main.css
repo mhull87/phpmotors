@@ -68,7 +68,7 @@ footer p {
   margin: 0;
 }
 
-footer p:first-child {
+footer p:first-child, .reviewhr {
   margin-top: 5%;
   border-top: 5px #3a3a3a solid;
   padding-top: 1%;
@@ -238,6 +238,10 @@ footer {
 
 ul {
   list-style: none;
+}
+
+.review {
+  width: 100%;
 }
 
 @media only screen and (min-width: 375px) {
