@@ -17,13 +17,11 @@ $clientData = $_SESSION['clientData'];?>
 
   <div class="reviewhr">
     <h2>Customer Reviews</h2>
-
-    <p><i>Be the first to write a review.</i></p>
   </div>
 
   <?php if ($_SESSION['loggedin']) {
   echo "<h3>Review the $vehicle</h3>
-  <form action='/phpmotors/vehicles/?action=review' method='POST'>
+  <form action='/phpmotors/reviews/' method='POST'>
     <label for='screenname'>Screen Name: </label><br>
     <input id='screenname' type='text' value='$screenName' readonly><br><br>
     <label for='textarea'>Review: </label><br>
@@ -31,11 +29,13 @@ $clientData = $_SESSION['clientData'];?>
     <input type='submit' value='Submit Review'>
     <input type='hidden' name='clientId' value='$clientData[clientId]'>
     <input type='hidden' name='invId' value='$invId'>
+    <input type='hidden' name='action' value='addreview'>
   </form>";
   } else {
     echo "<p>You must <a href='/phpmotors/accounts/?action=login'
         title='Login to your account to write a review.'>login</a> to write a review.</p>";
     }
+  echo $rt;
     ?>
 </main>
 

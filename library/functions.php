@@ -115,6 +115,42 @@ function displayThumbnails($thumbnails) {
   return $dt;
   }
 
+function buildAdminReviewTable($reviews) {
+  $rt = '<ul>';
+  foreach ($reviews as $review) {
+    $date = $review['reviewdate'];
+    $date = date('d F, Y', strtotime($date));
+    $rt .= "<li class='reviewlisttop'>$date</li>";
+    $rt .= "<li class='reviewlist'>$review[review]</li>";
+    $rt .= "<li class='align'><p class='inline'><a class='button' href='/phpmotors/reviews/?action=editview&reviewId=$review[reviewId]&invId=$review[invId]' title='Update this review.'>Update</a></p>";
+    $rt .= "<p class='inline'><a class='button' href='/phpmotors/reviews/?action=deleteconfirm&reviewId=$review[reviewId]&invId=$review[invId]' title='Delete this review.'>Delete</a></p></li>";
+  }
+  $rt .= '</ul>';
+  return $rt;
+  }
+
+function buildReviewTable($reviews) {
+  $rt = '<ul>';
+  if ($reviews) {
+  foreach ($reviews as $review) {
+  $date = $review['reviewdate'];
+  $date = date('d F, Y', strtotime($date)); 
+  $clientName = getClientById($review['clientId']);
+  $reviewerfristname = substr($clientName['clientFirstname'], 0, 1);
+  $reviewerlastname = $clientName['clientLastname'];
+  $reviewerName = "$reviewerfristname$reviewerlastname";
+
+  $rt .= "<li class='reviewlisttop'>$reviewerName wrote on $date:</li>";
+  $rt .= "<li class='reviewlist'>$review[review]</li>";
+  } 
+} else {
+  $rt .= '<p><i>Be the first to write a review.</i></p>';
+
+}
+  $rt .= '</ul>';
+  return $rt;
+}
+
 /* * ********************************
 *  Functions for working with images
 * ********************************* */

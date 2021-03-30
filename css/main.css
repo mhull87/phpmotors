@@ -150,6 +150,7 @@ figcaption {
 }
 
 .table {
+  width: 100%;
   margin: 1rem auto;
 }
 
@@ -242,6 +243,37 @@ ul {
 
 .review {
   width: 100%;
+}
+
+.reviewlisttop {
+padding-top: 2%;
+}
+
+.reviewlist {
+  background-color: #a6cbeb;
+  padding: 2%;
+  margin-bottom: 1%;
+  width: 100%;
+}
+
+.button {
+  border:#bababa 1px solid;
+  background-color: #ccc;
+  padding: 1%;
+}
+
+.inline {
+  display: inline;
+  text-align: right;
+  margin: 2%;
+}
+
+.align {
+  text-align: right;
+}
+
+.inline a {
+  text-decoration: none;
 }
 
 @media only screen and (min-width: 375px) {

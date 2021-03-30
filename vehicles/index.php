@@ -11,6 +11,8 @@ require_once '../model/main-model.php';
 require_once '../model/vehicles-model.php';
 //validate the email and password
 require_once '../library/functions.php';
+require_once '../model/review-model.php';
+require_once '../model/accounts-model.php';
 
 $classifications = getClassifications();
 
@@ -211,9 +213,10 @@ switch ($action)
     $vehicle = getInvItemInfo($invId);
     $invId = $vehicle['invId'];
     $thumbnails = getThumbnails($invId);
-
+    $reviews = getReviewsByInvId($invId);
     $make = $vehicle['invMake'];
     $model = $vehicle['invModel'];
+
     if (!count($vehicle)) {
       $message = "<p class='error'>Sorry, no $make $model vehicle found.</p>";
     } else {
@@ -223,17 +226,12 @@ switch ($action)
       $firstname =  substr($_SESSION['clientData']['clientFirstname'], 0, 1);
       $lastName = $_SESSION['clientData']['clientLastname'];
       $screenName = "$firstname$lastName";
+      $rt = buildReviewTable($reviews);
     }
     include '../view/details.php';
     break;
 
-  case 'review':
-    $clientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT);
-    $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
-    $review = filter_input(INPUT_POST, 'review', FILTER_SANITIZE_STRING);
-    insertReview($clientId, $invId, $review);
-    include '../view/admin.php';
-    break;
+
 
   default:
     $classificationList = buildClassificationList($classificationList);

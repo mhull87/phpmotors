@@ -12,6 +12,7 @@ require_once '../model/main-model.php';
 require_once '../model/accounts-model.php';
 //validate the email and password
 require_once '../library/functions.php';
+require_once '../model/review-model.php';
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action == null)
@@ -112,6 +113,9 @@ switch ($action)
     //store the array into the session
     $_SESSION['clientData'] = $clientData;
     //sent them to the admin view
+    $clientId = $_SESSION['clientData']['clientId'];
+    $reviews = getReviewsByClientId($clientId);
+    $rt = buildAdminReviewTable($reviews);
     include '../view/admin.php';
     exit;
   
@@ -234,6 +238,9 @@ switch ($action)
     break;
 
   default:
+    $clientId = $_SESSION['clientData']['clientId'];
+    $reviews = getReviewsByClientId($clientId);
+    $rt = buildAdminReviewTable($reviews);
     include '../view/admin.php';
     break;
 }

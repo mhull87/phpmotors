@@ -36,7 +36,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/header.php';
   ?>
 
 <h2>Reviews</h2>
-<?php echo $reviews ?>
+<?php echo $rt ?>
 
 </main>
 

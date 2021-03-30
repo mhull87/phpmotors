@@ -118,8 +118,7 @@ function updateVehicle($classificationId, $invMake, $invModel, $invDescription, 
   }
 
 //delete a vehicle from the inventory list
-function deleteVehicle($invId)
-  {
+function deleteVehicle($invId) {
     //Create a connection object using the phpmotors connection function
     $db = phpmotorsConnect();
     //The SQL statement
@@ -174,35 +173,4 @@ function getThumbnails($invId) {
   return $thumbnail;
   }
 
-function insertReview($clientId, $invId, $review) {
-  $db = phpmotorsConnect();
-
-  $sql = 'INSERT INTO reviews (clientId, invId, review) 
-  VALUES (:clientId, :invId, :review)';
-
-  $stmt = $db->prepare($sql);
-  $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
-  $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
-  $stmt->bindValue(':review', $review, PDO::PARAM_STR);
-
-  $stmt->execute();
-  $stmt->closeCursor();
-}
-
-function getReviewsByInvId() {
-
-}
-
-function getReviewsByClientId($clientId) {
-  $db = phpmotorsConnect();
-
-  $sql = 'SELECT * FROM reviews WHERE clientId=:clientId';
-
-  $stmt = $db->prepare($sql);
-  $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
-  $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  $stmt->execute();
-  $stmt->closeCursor();
-  return $reviews;
-}
 ?>
