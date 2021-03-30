@@ -1,4 +1,5 @@
 <?php
+session_start();
 include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/header.php';
 ?>
 
@@ -14,11 +15,11 @@ include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/header.php';
 <?php if (isset($message)) {
   echo $message;
 } ?>
-<p>Reviewed on <?php echo $date?></p>
+<p>Reviewed on <?php if (isset($date)) {echo $date;} elseif (isset($_SESSION['sessionreviewdate'])) {echo $_SESSION['sessionreviewdate'];}?></p>
 
 <form action="/phpmotors/reviews/" method="POST">
 <label for="textarea">Review Text</label><br>
-<textarea id='textarea' class='review' rows='6' name="review" required><?php echo $reviewText ?></textarea><br><br>
+<textarea id='textarea' class='review' rows='6' name="review" required><?php if(isset($reviewText)) {echo $reviewText;} elseif (isset($_SESSION['sessionreview'])) {echo $_SESSION['sessionreview'];} ?></textarea><br><br>
 <input type="hidden" name="action" value="updatereview">
 <input type="hidden" name="reviewId" value="<?php echo $reviewId ?>">
 <input type="submit" value="Update">
@@ -28,4 +29,5 @@ include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/header.php';
 
 <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/footer.php'; 
 unset($_SESSION['message']);
+unset($_SESSION['reviewmessage']);
 ?>

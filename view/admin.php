@@ -36,7 +36,10 @@ include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/header.php';
   ?>
 
 <h2>Reviews</h2>
-<?php echo $rt ?>
+<?php if (isset($_SESSION['reviewmessage'])) {
+  echo $_SESSION['reviewmessage'];
+}
+echo $rt ?>
 
 </main>
 

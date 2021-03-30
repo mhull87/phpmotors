@@ -27,6 +27,10 @@ switch ($action)
     $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
     $review = filter_input(INPUT_POST, 'review', FILTER_SANITIZE_STRING);
     insertReview($clientId, $invId, $review);
+    $clientId = $_SESSION['clientData']['clientId'];
+    $reviews = getReviewsByClientId($clientId);
+    $rt = buildAdminReviewTable($reviews);
+  
     include '../view/admin.php';
     break;
 
@@ -35,20 +39,41 @@ switch ($action)
     $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT);
     $review = getReview($reviewId);
     $reviewText = $review['review'];
+    $_SESSION['sessionreview'] = $reviewText;
     $date = $review['reviewdate'];
     $date = date('d F, Y', strtotime($date));
+    $_SESSION['sessionreviewdate'] = $date;
     $invInfo = getVehicleByInvId($invId);
+
     include '../view/review-update.php';
     break;
 
   case 'updatereview':
     $reviewId = filter_input(INPUT_POST, 'reviewId', FILTER_SANITIZE_NUMBER_INT);
     $review = filter_input(INPUT_POST, 'review', FILTER_SANITIZE_STRING);
-    updateReview($review, $reviewId);
+    
+    if (empty($review)) {
+      $message = "<p class='error'>Please provide text for the review.</p>";
+      
+      include '../view/review-update.php';
+      exit;
+    } else {
+    $result = updateReview($review, $reviewId);
+      if ($result) {
+    $message = "<p class='success'>Your review has been successfully updated.</p>";
+    $_SESSION['reviewmessage'] = $message;
+    } else {
+      
+      $message = "<p class='error'>Sorry, the update failed.</p>";
+      $_SESSION['reviewmessage'] = $message;
+    }
+  }
+    unset($_SESSION['sessionreview']);
+    unset($_SESSION['sessionreviewdate']);
     $clientId = $_SESSION['clientData']['clientId'];
     $reviews = getReviewsByClientId($clientId);
     $rt = buildAdminReviewTable($reviews);
-
+  
     include '../view/admin.php';
     break;
 
@@ -68,18 +93,30 @@ switch ($action)
   case 'deletereview':
     $reviewId = filter_input(INPUT_POST, 'reviewId', FILTER_SANITIZE_NUMBER_INT);
 
-    deleteReview($reviewId);
+    $result = deleteReview($reviewId);
+    if ($result) {
+      $message = "<p class='success'>Your review has been successfully deleted.</p>";
+      $_SESSION['reviewmessage'] = $message;
+      } else {
+        
+        $message = "<p class='error'>Sorry, the deletion failed.</p>";
+        $_SESSION['reviewmessage'] = $message;
+      }
+  
     $clientId = $_SESSION['clientData']['clientId'];
     $reviews = getReviewsByClientId($clientId);
     $rt = buildAdminReviewTable($reviews);
+
 
     include '../view/admin.php';
     break;
 
   default:
-    $classificationList = buildClassificationList($classificationList);
-      
-    include '../view/vehicle-management.php';
+  $clientId = $_SESSION['clientData']['clientId'];
+  $reviews = getReviewsByClientId($clientId);
+  $rt = buildAdminReviewTable($reviews);
+
+    include '../view/admin.php';
     break;
 }
 ?>

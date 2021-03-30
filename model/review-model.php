@@ -17,7 +17,7 @@ function insertReview($clientId, $invId, $review) {
 function getReviewsByInvId($invId) {
   $db = phpmotorsConnect();
 
-  $sql = 'SELECT * FROM reviews WHERE invId=:invId';
+  $sql = 'SELECT * FROM reviews WHERE invId=:invId ORDER BY reviewId desc';
 
   $stmt = $db->prepare($sql);
   $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
@@ -30,7 +30,7 @@ function getReviewsByInvId($invId) {
 function getReviewsByClientId($clientId) {
   $db = phpmotorsConnect();
 
-  $sql = 'SELECT * FROM reviews WHERE clientId=:clientId';
+  $sql = 'SELECT * FROM reviews WHERE clientId=:clientId ORDER BY reviewId desc';
 
   $stmt = $db->prepare($sql);
   $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
